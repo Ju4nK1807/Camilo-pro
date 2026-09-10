@@ -54,7 +54,7 @@ export class PedidosController {
     const pedidos = this.pedidos.filter(p => p.payment_method === PaymentMethod.CASH);
     return {
       data: pedidos,
-      message: pedidos.length === 0 ? 'No hay pedidos con este metodo de pago' : 'Pedido de TC',
+      message: pedidos.length === 0 ? 'No hay pedidos con este metodo de pago' : 'Pedido en efectivo',
     }
   }
 
@@ -68,7 +68,7 @@ export class PedidosController {
   }
 
   @Get('/:id')
-  findById(@Param('id') id: number) {
+  findById(@Param('id') id: string) {
     const pedido = this.pedidos.find(p => p.id === Number(id));
     return {
       data: pedido,

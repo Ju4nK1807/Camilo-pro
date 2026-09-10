@@ -20,9 +20,8 @@ export class UsersController {
   }
 
 
-  @Get('/search/:name')
+  @Get('/search/name/:name')
   getUserByName(@Param('name') name: string) {
-    console.log('.:: User by name:', name)
     const user = this.users.find(u => u.name === name);
     return {
       data: user,
@@ -30,9 +29,8 @@ export class UsersController {
     }
   }
 
-  @Get('/search/:id')
-  getUserById(@Param('id') id: number) {
-    console.log('.:: User by id:', id)
+  @Get('/search/id/:id')
+  getUserById(@Param('id') id: string) {
     const user = this.users.find(u => u.id === Number(id));
     return {
       data: user,
@@ -41,8 +39,7 @@ export class UsersController {
   }
 
   @Post()
-  create(@Body() body : any){
-    console.log(body)
+  create(@Body() body: User){
     this.users.push(body);
     return {success: true, user: body};
   }
